@@ -32,7 +32,7 @@ import { Geolocation } from '@ionic-native/geolocation';
   imports: [
     IonicModule.forRoot(MyApp),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCwn7gYn4jEDo9NaDSiy_jYrC8h1DvKTYc'
+      apiKey: ''
     })
   ],
   bootstrap: [IonicApp],

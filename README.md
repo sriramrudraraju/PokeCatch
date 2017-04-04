@@ -13,3 +13,6 @@ Credit: pokeApi
 
 ## Inspiration
 Pokemon go. Poke vision, pokehuntr, multiple poked apps
+
+# Google Api Key
+Use your own google Api key in app.module.ts in imports section
