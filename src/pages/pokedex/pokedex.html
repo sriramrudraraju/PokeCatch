@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Pokedex</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <!--<ion-searchbar
+  [showCancelButton]="shouldShowCancel"
+  (ionInput)="onInput($event)"
+  (ionCancel)="onCancel($event)">
+</ion-searchbar>-->
+
+
+<ion-list [virtualScroll]="pokemonDataArray" no-lines>
+ <ion-item *virtualItem="let pokemon" (tap)="clickPokemon(pokemon)">
+    <ion-thumbnail item-left>
+      <ion-img [src]="pokemon.imagePath" style="background: none"></ion-img>
+      <!--<img [src]="pokemon.imagePath">-->
+    </ion-thumbnail>
+    <h2 class="pokemonNames">#{{pokemon.id}} {{pokemon.name}}</h2>
+  </ion-item>
+</ion-list>
+
+<!--displaying pokemons as col elements without infinite scroll-->
+<!--<ion-grid>
+  <ion-row>
+      <ion-col col-4 *ngFor = "let pokemon of pokemonDataArray">
+        <ion-list no-lines>
+        <ion-item (tap)="clickPokemon(pokemon)">
+            <img [src]="pokemon.imagePath">
+            <p class="pokemonNames">{{pokemon.name}}</p>
+        </ion-item>
+        </ion-list>
+    </ion-col>
+  </ion-row>
+</ion-grid>-->
+
+<!--displaying pokemon as single items using infinite scroll-->
+<!--<ion-list>
+   <ion-item *ngFor="let pokemon of pokemonDataArray">
+     <img [src]="pokemon.imagePath">
+          <p class="pokemonNames">{{pokemon.name}}</p>
+   </ion-item>
+ </ion-list>
+
+ <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+   <ion-infinite-scroll-content></ion-infinite-scroll-content>
+ </ion-infinite-scroll>-->
+
+<!--showing pokemon as ion-col using infinte scroll-->
+ <!--<ion-grid>
+  <ion-row>
+      <ion-col col-4 *ngFor = "let pokemon of pokemonDataArray">
+        <ion-list no-lines>
+        <ion-item (click)="clickPokemon(pokemon)">
+            <img [src]="pokemon.imagePath">
+            <p class="pokemonNames">{{pokemon.name}}</p>
+        </ion-item>
+        </ion-list>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+   <ion-infinite-scroll-content></ion-infinite-scroll-content>
+ </ion-infinite-scroll>-->
+
+
+</ion-content>
+

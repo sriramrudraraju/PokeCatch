@@ -1,0 +1,67 @@
+page-pokemon {
+    #contentBackground{
+        background-color: whitesmoke;
+    }
+
+    #contentExceptImage{
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px 5px lightgrey;
+    }
+   
+
+    #buttonFixed{
+        position: fixed;
+        bottom: 10px;
+        left: 42%;
+    }
+    
+    #pokemonImage{
+        position : relative;
+        top: 100px;
+        padding: 0 10% 10% 10%;
+    }
+
+    #pokemonName{
+        text-transform: capitalize;
+        text-align: center;
+    }
+
+    .statsBars {
+    display: inline-block;
+    width: 80%;
+    border-top: 5px solid #429bf4;
+    border-radius: 500px;
+    }
+
+    .pokemonTypes{
+        img {
+            height: 25px;
+        }
+
+        .typeName{
+            color: gray;
+            font-size: .7em;
+            text-transform: uppercase;
+            text-align: center;
+        }
+    }
+
+    .abilityNames{
+        text-transform: capitalize;
+    }
+
+    .abilityDescription{
+        text-transform: capitalize;
+        margin: 0px;
+        text-align: left;
+        font-size: 0.8em;
+        color: gray;
+    }
+
+    .abilityRows {
+        width: 100%;
+        max-height: 33px;
+    }
+
+}

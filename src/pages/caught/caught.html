@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Caught
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+  <ion-row>
+      <ion-col col-4 *ngFor = "let pokemon of caughtPokemonArray">
+        <ion-list no-lines>
+        <ion-item (tap)="clickPokemon(pokemon)">
+            <img [src]="pokemon.imagePath" style="height:70px; width:100%">
+            <p class="pokemonNames">{{pokemon.name}}</p>
+        </ion-item>
+        </ion-list>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>

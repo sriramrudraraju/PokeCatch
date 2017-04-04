@@ -1,0 +1,204 @@
+<ion-content padding id="contentBackground">
+
+<ion-grid>
+    <ion-row>
+      <ion-col>
+        <img id="pokemonImage" [src]="pokemonData.imagePath">
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+<div id="contentExceptImage">
+
+  <br/><br/><br/>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <h3 id="pokemonName" text-center>{{pokemonData.name}}</h3>
+        </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+    <ion-grid *ngIf="!pokemonData.fromApi" text-center>
+      Loading....
+    </ion-grid>
+
+  <ion-grid class="pokemonTypes" *ngIf = "pokemonData.fromApi">
+    <ion-row>
+      <ion-col style="margin-top: 4px">
+        <span>{{ pokemonData.fromApi.weight }} <span class="typeName">kg</span></span><br/>
+        <span class="typeName" style="display: inline-block; margin-top: 12px">weight</span>
+      </ion-col>
+      <ion-col> | </ion-col>
+      <ion-col *ngFor="let type of pokemonData.fromApi.types">
+        <span [ngSwitch]="type.type.name">
+          <span *ngSwitchCase="'bug'">
+            <img src="assets/pokemonTypes/bug.png"><br/>
+            <span class="typeName">bug</span>
+          </span>
+          <span *ngSwitchCase="'dark'">
+            <img src="assets/pokemonTypes/dark.png"><br/>
+            <span class="typeName">dark</span>
+          </span>
+          <span *ngSwitchCase="'dragon'">
+            <img src="assets/pokemonTypes/dragon.png"><br/>
+            <span class="typeName">dragon</span>
+          </span>
+          <span *ngSwitchCase="'electric'">
+            <img src="assets/pokemonTypes/electric.png"><br/>
+            <span class="typeName">electric</span>
+          </span>
+          <span *ngSwitchCase="'fairy'">
+            <img src="assets/pokemonTypes/fairy.png"><br/>
+            <span class="typeName">fairy</span>
+          </span>
+          <span *ngSwitchCase="'fighting'">
+            <img src="assets/pokemonTypes/fighting.png"><br/>
+            <span class="typeName">fighting</span>
+          </span>
+          <span *ngSwitchCase="'fire'">
+            <img src="assets/pokemonTypes/fire.png"><br/>
+            <span class="typeName">fire</span>
+          </span>
+          <span *ngSwitchCase="'flying'">
+            <img src="assets/pokemonTypes/flying.png"><br/>
+            <span class="typeName">flying</span>
+          </span>
+          <span *ngSwitchCase="'ghost'">
+            <img src="assets/pokemonTypes/ghost.png"><br/>
+            <span class="typeName">ghost</span>
+          </span>
+          <span *ngSwitchCase="'grass'">
+            <img src="assets/pokemonTypes/grass.png"><br/>
+            <span class="typeName">grass</span>
+          </span>
+          <span *ngSwitchCase="'ground'">
+            <img src="assets/pokemonTypes/ground.png"><br/>
+            <span class="typeName">ground</span>
+          </span>
+          <span *ngSwitchCase="'ice'">
+            <img src="assets/pokemonTypes/ice.png"><br/>
+            <span class="typeName">ice</span>
+          </span>
+          <span *ngSwitchCase="'normal'">
+            <img src="assets/pokemonTypes/normal.png"><br/>
+            <span class="typeName">normal</span>
+          </span>
+          <span *ngSwitchCase="'poison'">
+            <img src="assets/pokemonTypes/poison.png"><br/>
+            <span class="typeName">poison</span>
+          </span>
+          <span *ngSwitchCase="'psychic'">
+            <img src="assets/pokemonTypes/psychic.png"><br/>
+            <span class="typeName">psychic</span>
+          </span>
+          <span *ngSwitchCase="'rock'">
+            <img src="assets/pokemonTypes/rock.png"><br/>
+            <span class="typeName">rock</span>
+          </span>
+          <span *ngSwitchCase="'steel'">
+            <img src="assets/pokemonTypes/steel.png"><br/>
+            <span class="typeName">steel</span>
+          </span>
+          <span *ngSwitchCase="'water'">
+            <img src="assets/pokemonTypes/water.png"><br/>
+            <span class="typeName">water</span>
+          </span>
+        </span>
+      </ion-col>
+      <ion-col> | </ion-col>
+      <ion-col style="margin-top: 4px;">
+        <span>{{ pokemonData.fromApi.height }} <span class="typeName">m</span></span><br/>
+        <span class="typeName" style="display: inline-block; margin-top: 12px">height</span>
+      </ion-col>
+    </ion-row>
+
+    <div>
+      <hr/>
+    </div>
+
+<!--stats-->
+     <ion-row *ngFor="let stat of pokemonData.fromApi.stats">
+        <ion-col col-4 tex-right style="text-transform: capitalize">{{stat.stat.name}}</ion-col>
+        <ion-col col-6><span class="statsBars"> </span></ion-col>
+        <ion-col col-2 tex-right>{{stat.base_stat}}</ion-col>
+      </ion-row>
+
+    <div>
+      <hr/>
+    </div>
+
+<!--more-->
+<div>
+  <hr/>
+
+  <p (click)="more = true" text-center *ngIf="!more">More <ion-icon name="arrow-dropdown"></ion-icon></p>
+  <p (click)="more = false" text-center *ngIf="more">Less <ion-icon name="arrow-dropup"></ion-icon></p>
+
+  <div *ngIf="more">
+  <!--Abilities-->
+      <ion-row>
+        <ion-col col-3>
+          <p>Abilities</p>
+        </ion-col>
+        <ion-col>
+          <ion-row (tap)="tapAbility(0)" class="abilityRows">
+            <p class="abilityNames">{{pokemonData.fromApi.abilities[0].ability.name}} 
+              <ion-icon name="arrow-dropdown" *ngIf="!pokemonData.ability1"></ion-icon></p>
+          </ion-row>
+          <ion-row *ngIf="pokemonData.ability1" class="abilityRows">
+            <p class="abilityDescription"><em>{{pokemonData.ability1.effect_entries[0].effect}}</em></p>
+          </ion-row>
+          <ion-row (tap)="tapAbility(1)" class="abilityRows">
+            <p class="abilityNames">{{pokemonData.fromApi.abilities[1].ability.name}} 
+              <ion-icon name="arrow-dropdown" *ngIf="!pokemonData.ability2"></ion-icon></p>
+          </ion-row>
+          <ion-row *ngIf="pokemonData.ability2" class="abilityRows">
+            <p class="abilityDescription"><em>{{pokemonData.ability2.effect_entries[0].effect}}</em></p>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+
+      <hr/>
+
+      <!--moves-->
+      <ion-row>
+        <ion-col col-3>
+          <p>Moves</p>
+        </ion-col>
+        <ion-col>
+          <ion-row (tap)="tapMove(i)" *ngFor="let move of pokemonData.fromApi.moves; let i = index" >
+            <ion-row class="abilityRows">
+            <p class="abilityNames">{{move.move.name}} 
+              <ion-icon name="arrow-dropdown" *ngIf="!pokemonData[i]"></ion-icon></p>
+            </ion-row>
+            <ion-row *ngIf="pokemonData[i]" class="abilityRows">
+              <p class="abilityDescription"><em>{{pokemonData[i].effect_entries[0].effect}}</em></p>
+            </ion-row>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+  </div>
+</div>
+
+  </ion-grid>
+
+    
+
+
+  <br/><br/><br/>
+
+</div>
+
+ <ion-fab center bottom>
+    <button ion-fab color="light" 
+    round (tap)= "clickClose()">X</button>
+  </ion-fab>
+  
+</ion-content>
+
+
+
+    
+

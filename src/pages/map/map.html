@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Map
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-grid style="height: 100%">
+      <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+
+      <sebm-google-map-marker [latitude]="lat" [longitude]="lng"
+        [iconUrl]= "imagePath" [openInfoWindow]= "true">
+
+
+        <sebm-google-map-info-window [disableAutoPan]="false">
+
+
+<ion-list no-lines style="margin: 0px">
+  <ion-item>
+    <ion-thumbnail item-left>
+      <img src={{imagePath}}>
+    </ion-thumbnail>
+    <h2>{{pokmemonName}}</h2>
+    <p>IV : {{iv}}%</p>
+    <button ion-button clear item-right (tap)="capture()"
+    *ngIf="show">Capture</button>
+  </ion-item>
+</ion-list>
+
+      
+       </sebm-google-map-info-window>
+
+
+       </sebm-google-map-marker>
+
+      </sebm-google-map>
+    </ion-grid>
+    
+</ion-content>
